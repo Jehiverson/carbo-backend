@@ -6,31 +6,31 @@ const generalFunctions = require("../utils/generalFunction");
 const dbFunction = require('../utils/dbFunctions');
 const { getDataCollection, getDataCollectionForId, setDataCollection, updateDataCollection, deleteDataCollection } = dbFunction;
 
-router.get("/ourmission", async(req, res) => {
-   var data = await getDataCollection('OurMission');
+router.get("/paymethods", async(req, res) => {
+   var data = await getDataCollection('PayMethods');
    res.json({data});
 });
 
-router.get("/ourmission/:id", async(req, res) => {
+router.get("/paymethods/:id", async(req, res) => {
    console.log(req.params.id);
-    var data = await getDataCollectionForId('OurMission', req.params.id);
+    var data = await getDataCollectionForId('PayMethods', req.params.id);
     res.json({data});
  });
 
-router.post("/ourmission", async(req, res) => {
+router.post("/paymethods", async(req, res) => {
     let idGenereted = generalFunctions.randomId(req.body.title, req.body.description);
     req.body.id = idGenereted;
-    await setDataCollection('OurMission', idGenereted, req.body);
+    await setDataCollection('PayMethods', idGenereted, req.body);
     res.json({status: 1});
  });
 
- router.patch("/ourmission", async(req, res) => {
-    var dataUpdate = await updateDataCollection('OurMission', req.body.id, req.body);
+ router.patch("/paymethods", async(req, res) => {
+    var dataUpdate = await updateDataCollection('PayMethods', req.body.id, req.body);
     res.json({status: dataUpdate});
  });
 
- router.delete("/ourmission", async(req, res) => {
-    var dataDelete = await deleteDataCollection('OurMission', req.body.id);
+ router.delete("/paymethods", async(req, res) => {
+    var dataDelete = await deleteDataCollection('PayMethods', req.body.id);
     res.json({status: dataDelete});
  });
  

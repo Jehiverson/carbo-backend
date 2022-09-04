@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+//I never used because i implement at Carousel with option in select
 //Functions
 const generalFunctions = require("../utils/generalFunction");
 const dbFunction = require('../utils/dbFunctions');
