@@ -12,6 +12,8 @@ const sendmethods = require("./sendmethods.routes");
 const footer = require("./footer.routes");
 const location = require("./location.routes");
 const locationdescription = require("./locationdescription.routes");
+const logoandslogan = require("./logoandslogan.routes");
+const contactus = require("./contactus.routes");
 
 router.use('', carrousel);
 router.use('', products);
@@ -23,5 +25,7 @@ router.use('', sendmethods);
 router.use('', footer);
 router.use('', location);
 router.use('', locationdescription);
+router.use('', logoandslogan);
+router.use('', contactus);
 
 module.exports = router;

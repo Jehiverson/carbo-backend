@@ -17,15 +17,19 @@ router.get("/clientTestimonials/:id", async(req, res) => {
     res.json({data});
  });
 
+ router.get("/clientTestimonials/:page/:value", async(req, res) => {
+   var data = await getDataCollection('ClientTestimonials', true, {field: req.params.page, condition: '==', value: req.params.value});
+   res.json({data});
+});
+
 router.post("/clientTestimonials", async(req, res) => {
-    let idGenereted = generalFunctions.randomId(req.body.title, req.body.subtitle);
+    let idGenereted = generalFunctions.randomId(req.body.name, req.body.company);
     req.body.id = idGenereted;
     await setDataCollection('ClientTestimonials', idGenereted, req.body);
     res.json({status: 1});
  });
 
  router.patch("/clientTestimonials", async(req, res) => {
-   console.log(req.body);
     var dataUpdate = await updateDataCollection('ClientTestimonials', req.body.id, req.body);
     res.json({status: dataUpdate});
  });

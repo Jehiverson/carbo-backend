@@ -17,8 +17,13 @@ router.get("/ourservices/:id", async(req, res) => {
     res.json({data});
  });
 
+ router.get("/ourservices/:page/:value", async(req, res) => {
+   var data = await getDataCollection('OurServices', true, {field: req.params.page, condition: '==', value: req.params.value});
+   res.json({data});
+});
+
 router.post("/ourservices", async(req, res) => {
-    let idGenereted = generalFunctions.randomId(req.body.title, req.body.subtitle);
+    let idGenereted = generalFunctions.randomId(req.body.title, req.body.description);
     req.body.id = idGenereted;
     await setDataCollection('OurServices', idGenereted, req.body);
     res.json({status: 1});

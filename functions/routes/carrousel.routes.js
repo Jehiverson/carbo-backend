@@ -17,6 +17,12 @@ router.get("/carousel/:id", async(req, res) => {
     res.json({data});
  });
 
+ router.get("/carousel/:page/:value", async(req, res) => {
+   console.log(req.params)
+   var data = await getDataCollection('Carousel', true, {field: req.params.page, condition: '==', value: req.params.value});
+   res.json({data});
+});
+
 router.post("/carousel", async(req, res) => {
     let idGenereted = generalFunctions.randomId(req.body.title, req.body.subtitle);
     req.body.id = idGenereted;

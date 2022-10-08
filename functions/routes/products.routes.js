@@ -17,6 +17,11 @@ router.get("/products/:id", async(req, res) => {
     res.json({data});
  });
 
+ router.get("/products/:page/:value", async(req, res) => {
+   var data = await getDataCollection('Products', true, {field: req.params.page, condition: '==', value: JSON.parse(req.params.value)});
+   res.json({data});
+});
+
 router.post("/products", async(req, res) => {
     let idGenereted = generalFunctions.randomId(req.body.title, req.body.subtitle);
     req.body.id = idGenereted;

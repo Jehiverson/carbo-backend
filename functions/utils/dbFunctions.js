@@ -4,20 +4,27 @@ const { getFirestore } = require('firebase-admin/firestore');
 initializeApp();
 const db = getFirestore();
 
-const getDataCollection = async (collectionRef) =>{
+const getDataCollection = async (collectionRef, flagWhere ,whereCondition) =>{
 
     var dataCollection = [];
-
+    var snapshot = "";
     const dataRef = db.collection(collectionRef);
 
-    const snapshot = await dataRef.get();
-    if (snapshot.empty) {
-    return dataCollection;
+    if(flagWhere){
+         snapshot = await dataRef.where(whereCondition.field, whereCondition.condition, whereCondition.value).get();
+    }else{
+         snapshot = await dataRef.get(); 
     }
 
+    if (snapshot.empty) {
+        return dataCollection;
+    }
+    
     snapshot.forEach(doc => {
         dataCollection.push(doc.data());
     });
+
+    
 
     return dataCollection;
 };

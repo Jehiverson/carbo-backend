@@ -18,7 +18,7 @@ router.get("/ourmission/:id", async(req, res) => {
  });
 
 router.post("/ourmission", async(req, res) => {
-    let idGenereted = generalFunctions.randomId(req.body.title, req.body.description);
+    let idGenereted = generalFunctions.randomId(req.body.title, req.body.subtitle);
     req.body.id = idGenereted;
     await setDataCollection('OurMission', idGenereted, req.body);
     res.json({status: 1});
